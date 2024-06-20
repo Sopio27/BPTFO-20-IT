@@ -112,17 +112,17 @@ def team(request, id_d, id_t):
     else:
         team_tasks = Task.objects.filter(TeamId=id_t)
 
-    current_employee = Employee.objects.get(UserName=request.user)
-    distinct_usernames = Task.objects.values_list('CreatorUserId__username', flat=True).distinct()
-    filtered_usernames = distinct_usernames.filter(TeamId=id_t)
+    # current_employee = Employee.objects.get(UserName=request.user)
+    # distinct_usernames = Task.objects.values_list('CreatorUserId__username', flat=True).distinct()
+    # filtered_usernames = distinct_usernames.filter(TeamId=id_t)
 
     context = {
         "requested_team": requested_team,
         "team_tasks": team_tasks,
         "column_names": column_names,
-        "status_names": status_names,
-        "current_employee": current_employee,
-        "filtered_usernames": filtered_usernames
+        "status_names": status_names
+        # "current_employee": current_employee,
+        # "filtered_usernames": filtered_usernames
     }
 
     return render(request, 'main/team.html', context)
